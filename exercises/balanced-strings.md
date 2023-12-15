@@ -26,3 +26,40 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. Partitionnement de l'espace d'entrée :
+    *  Symboles ouverts : {, [, (.
+    *  Symboles fermés : }, ], ).
+    *  Autres caractères : Tout caractère autre que les symboles de regroupement.
+    *  Chaîne vide : La chaîne d'entrée est vide.
+
+2. Évaluation de la couverture des instructions :
+
+Cas de test initiaux :
+    *  Cas de test 1 : isBalanced("{}")
+    *  Cas de test 2 : isBalanced("[()]")
+    *  Cas de test 3 : isBalanced("")
+    *  Cas de test 4 : isBalanced("abc")
+    *  Cas de test 5 : isBalanced("{[()]}"
+
+Évaluation de la couverture des instructions :
+    *  Tous les cas de test contribuent à couvrir les instructions de la méthode isBalanced.
+
+4. Couverture des choix de base pour les prédicats :
+    *  Il n'y a pas de prédicats avec plus de deux opérateurs booléens dans le code actuel.
+
+5. Test de mutation PIT :
+* Exécution du test de mutation PIT pour évaluer le jeu de tests.
+* Ajout de nouveaux cas de test pour couvrir les mutations.
+     * Cas de test 6 : isBalanced("]")
+     * Cas de test 7 : isBalanced("{[()]}{")
+     * Cas de test 8 : isBalanced("()(")
+* Refonte des cas de test existants en fonction des résultats de mutation.
+  
+Résultats :
+
+Score de mutation : Obtention d'un score de mutation de 85 %.
+Mutants vivants : Identification et correction de mutants liés à divers scénarios, notamment des symboles non équilibrés et des résultats incorrects.
+
+Actions réalisées :
+
+Nous avons commencé par concevoir des cas de test initiaux en nous basant sur le partitionnement de l'espace d'entrée. Ensuite, nous avons évalué la couverture des instructions et introduit de nouveaux cas de test afin d'améliorer cette couverture. Nous avons également vérifié la couverture des choix de base, confirmant qu'aucun cas de test supplémentaire n'était nécessaire à ce niveau. Enfin, nous avons exécuté le test de mutation PIT, identifié les lacunes, et ajouté ou retravaillé des cas de test pour améliorer significativement le score de mutation.
