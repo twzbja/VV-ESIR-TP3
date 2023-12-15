@@ -44,10 +44,10 @@ Cas de test initiaux :
 Évaluation de la couverture des instructions :
     *  Tous les cas de test contribuent à couvrir les instructions de la méthode isBalanced.
 
-4. Couverture des choix de base pour les prédicats :
+3. Couverture des choix de base pour les prédicats :
     *  Il n'y a pas de prédicats avec plus de deux opérateurs booléens dans le code actuel.
 
-5. Test de mutation PIT :
+4. Test de mutation PIT :
 * Exécution du test de mutation PIT pour évaluer le jeu de tests.
 * Ajout de nouveaux cas de test pour couvrir les mutations.
      * Cas de test 6 : isBalanced("]")
