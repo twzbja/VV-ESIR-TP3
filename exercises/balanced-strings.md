@@ -25,40 +25,97 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+```java
+import java.util.Stack;
+
+public class StringUtils {
+
+    private StringUtils() {}
+
+    public static boolean isBalanced(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : str.toCharArray()) {
+            switch (c) {
+                case '{':
+                case '[':
+                case '(':
+                    stack.push(c);
+                    break;
+                case '}':
+                    if (stack.isEmpty() || stack.pop() != '{') {
+                        return false;
+                    }
+                    break;
+                case ']':
+                    if (stack.isEmpty() || stack.pop() != '[') {
+                        return false;
+                    }
+                    break;
+                case ')':
+                    if (stack.isEmpty() || stack.pop() != '(') {
+                        return false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+```
+
 
 1. Partitionnement de l'espace d'entrée :
+* Les Caractéristiques :
     *  Symboles ouverts : {, [, (.
     *  Symboles fermés : }, ], ).
-    *  Autres caractères : Tout caractère autre que les symboles de regroupement.
-    *  Chaîne vide : La chaîne d'entrée est vide.
+
+* Les Blocs de partitionnement :
+    *  Chaînes avec des symboles ouvrants et fermants équilibrés.
+    *  Chaînes avec des symboles ouvrants et fermants déséquilibrés.
+    *  Chaînes vides.
 
 2. Évaluation de la couverture des instructions :
 
 Cas de test initiaux :
-    *  Cas de test 1 : isBalanced("{}")
-    *  Cas de test 2 : isBalanced("[()]")
-    *  Cas de test 3 : isBalanced("")
-    *  Cas de test 4 : isBalanced("abc")
-    *  Cas de test 5 : isBalanced("{[()]}"
+*  Cas de test 1 : isBalanced("{}")
+*  Cas de test 2 : isBalanced("[()]")
+*  Cas de test 3 : isBalanced("")
+*  Cas de test 4 : isBalanced("abc")
+*  Cas de test 5 : isBalanced("{[()]}"
 
 Évaluation de la couverture des instructions :
-    *  Tous les cas de test contribuent à couvrir les instructions de la méthode isBalanced.
+*  Tous les cas de test contribuent à couvrir les instructions de la méthode isBalanced.
 
 3. Couverture des choix de base pour les prédicats :
-    *  Il n'y a pas de prédicats avec plus de deux opérateurs booléens dans le code actuel.
+    *  Le code utilise uniquement des conditions simples et ne contient pas de prédicats complexes avec plus de deux opérateurs booléens. Par conséquent, la couverture de choix de base est déjà satisfaite.
 
 4. Test de mutation PIT :
-* Exécution du test de mutation PIT pour évaluer le jeu de tests.
-* Ajout de nouveaux cas de test pour couvrir les mutations.
-     * Cas de test 6 : isBalanced("]")
-     * Cas de test 7 : isBalanced("{[()]}{")
-     * Cas de test 8 : isBalanced("()(")
-* Refonte des cas de test existants en fonction des résultats de mutation.
+* Mutants actifs : Identification et correction des mutants qui survivent aux tests.
+```xml
+<plugins>
+    <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.5.2</version>
+        <configuration>
+            <targetClasses>
+                <param>fr.istic.vv.StringUtils</param>
+            </targetClasses>
+            <targetTests>
+                <param>fr.istic.vv.StringUtilsTest</param>
+            </targetTests>
+        </configuration>
+    </plugin>
+</plugins>
+
+```
   
 Résultats :
 
-Score de mutation : Obtention d'un score de mutation de 85 %.
-Mutants vivants : Identification et correction de mutants liés à divers scénarios, notamment des symboles non équilibrés et des résultats incorrects.
+Score de mutation : Obtention d'un score de mutation de 85 % la couverture de test est donc éfficace.
 
 Actions réalisées :
 
